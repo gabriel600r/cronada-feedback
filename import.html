@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronada — Importar Alumnos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0288D1 0%, #4FC3F7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .logo {
+            width: 72px; height: 72px;
+            background: #4FC3F7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+        }
+        h1 { color: #0288D1; font-size: 24px; margin-bottom: 8px; }
+        p { color: #555; font-size: 14px; margin-bottom: 16px; line-height: 1.5; }
+        .btn {
+            display: inline-block;
+            background: #0288D1;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .btn:hover { background: #0277BD; }
+        .btn-secondary {
+            display: inline-block;
+            background: #E1F5FE;
+            color: #0288D1;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .footer { margin-top: 24px; color: #999; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">C</div>
+        <h1>Cronada</h1>
+        <p>Un entrenador quiere compartir alumnos con vos.</p>
+        <p><strong>Abri este link desde tu celular con Cronada instalada:</strong></p>
+        <a id="openApp" class="btn" href="#">Abrir en Cronada</a>
+        <br><br>
+        <a class="btn-secondary" href="https://play.google.com/store/apps/details?id=com.egeainc.swimming_timer">
+            Descargar Cronada
+        </a>
+        <div class="footer">
+            Cronada — Cronometro de Natacion<br>
+            by EgeaINC
+        </div>
+    </div>
+    <script>
+        // Grab the query string and redirect to the deep link
+        var params = window.location.search;
+        var deepLink = 'cronada://import' + params;
+        document.getElementById('openApp').href = deepLink;
+
+        // Auto-redirect on mobile
+        var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+        if (isMobile && params) {
+            window.location.href = deepLink;
+        }
+    </script>
+</body>
+</html>
