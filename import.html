@@ -80,8 +80,13 @@
         </div>
     </div>
     <script>
-        // Grab the query string and redirect to the deep link
-        var params = window.location.search;
+        // The swimmers travel after "#" (never sent to this server); links
+        // from older app versions still carry them in "?d=". Either way they
+        // go on to the app as cronada://import?d=, which stays on the phone.
+        var fromHash = new URLSearchParams(window.location.hash.slice(1)).get('d');
+        var fromQuery = new URLSearchParams(window.location.search).get('d');
+        var data = fromHash || fromQuery;
+        var params = data ? '?d=' + encodeURIComponent(data) : '';
         var deepLink = 'cronada://import' + params;
         document.getElementById('openApp').href = deepLink;
 
